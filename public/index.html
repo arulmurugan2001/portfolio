@@ -1472,24 +1472,30 @@ footer{
 
       <div class="fade-up">
         <form id="contactForm" class="contact-form">
+          <!-- Web3Forms Access Key: replace the value below with your real access key -->
+          <input type="hidden" name="access_key" value="92376b8e-26c0-455b-b7fa-c0231ed8a7ab">
+          <input type="hidden" name="subject" value="New Portfolio Contact Message">
+          <input type="hidden" name="from_name" value="Portfolio Website">
+          <input type="checkbox" name="botcheck" style="display:none;">
+
           <div class="fg">
             <label>Your Name</label>
-            <input type="text" name="Name" placeholder="Ravi Kumar" required>
+            <input type="text" name="name" placeholder="Ravi Kumar" required>
           </div>
 
           <div class="fg">
             <label>Email Address</label>
-            <input type="email" name="Email" placeholder="ravi@example.com" required>
+            <input type="email" name="email" placeholder="ravi@example.com" required>
           </div>
 
           <div class="fg">
             <label>Subject</label>
-            <input type="text" name="Subject" placeholder="Project Collaboration" required>
+            <input type="text" name="message_subject" placeholder="Project Collaboration" required>
           </div>
 
           <div class="fg">
             <label>Message</label>
-            <textarea rows="5" name="Message" placeholder="Tell me about your project..." required></textarea>
+            <textarea rows="5" name="message" placeholder="Tell me about your project..." required></textarea>
           </div>
 
           <div id="formStatus" class="form-status" aria-live="polite"></div>
@@ -1660,7 +1666,7 @@ document.querySelectorAll('.proj-card').forEach(card => {
   });
 });
 
-/* Contact form message using Node.js backend */
+/* Contact form message using Web3Forms */
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 const sendBtn = document.getElementById("sendBtn");
@@ -1678,19 +1684,22 @@ if (contactForm) {
     formStatus.textContent = "Sending your message...";
 
     const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData);
 
-    const data = {
-      Name: formData.get("Name"),
-      Email: formData.get("Email"),
-      Subject: formData.get("Subject"),
-      Message: formData.get("Message")
-    };
+    if (!data.access_key || data.access_key === "PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE") {
+      formStatus.className = "form-status error";
+      formStatus.textContent = "Please add your Web3Forms access key in index.html.";
+      btnText.textContent = "Send Message →";
+      sendBtn.disabled = false;
+      return;
+    }
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify(data)
       });
@@ -1703,12 +1712,12 @@ if (contactForm) {
         contactForm.reset();
       } else {
         formStatus.className = "form-status error";
-        formStatus.textContent = result.message || "Message not sent.";
+        formStatus.textContent = result.message || "Message not sent. Please try again.";
       }
 
     } catch (error) {
       formStatus.className = "form-status error";
-      formStatus.textContent = "Server error. Please check backend is running.";
+      formStatus.textContent = "Network error. Please try again.";
     }
 
     btnText.textContent = "Send Message →";
