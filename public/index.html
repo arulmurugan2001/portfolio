@@ -612,11 +612,11 @@ h2{
 }
 
 .project-hidden{
-  display:none;
+  display:none !important;
 }
 
 .proj-grid.show-all .project-hidden{
-  display:block;
+  display:block !important;
 }
 
 .projects-more-wrap{
@@ -1572,6 +1572,21 @@ footer{
           </div>
         </div>
       </a>
+
+      <a href="javascript:void(0)" class="proj-card fade-up project-hidden" data-gallery="project5" aria-label="Open Project 5 gallery">
+        <div class="proj-thumb">
+          <img src="./images/project5-1.jpg" alt="Project 5 Website Project">
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Vivin Store</div>
+          <div class="proj-title">B2b Basic — Website Platform</div>
+          <div class="proj-desc">Modern responsive website with clean UI, smooth layout, and professional user experience.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="ptag">react</span></div>
+            <div class="proj-arrow">↗</div>
+          </div>
+        </div>
+      </a>
     </div>
 
     <div class="projects-more-wrap fade-up">
@@ -1924,6 +1939,17 @@ const projectGalleries = {
       "./images/project4-4.jpg",
       "./images/project4-5.jpg",
       "./images/project4-6.jpg"
+    ]
+  },
+  project5: {
+    title: "Project 5 — Website Platform Gallery",
+    images: [
+      "./images/project5-1.jpg",
+      "./images/project5-2.jpg",
+      "./images/project5-3.jpg",
+      "./images/project5-4.jpg",
+      "./images/project5-5.jpg",
+      "./images/project5-6.jpg"
     ]
   }
 };
