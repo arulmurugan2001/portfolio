@@ -611,6 +611,43 @@ h2{
   gap:1.5rem;
 }
 
+.project-hidden{
+  display:none;
+}
+
+.proj-grid.show-all .project-hidden{
+  display:block;
+}
+
+.projects-more-wrap{
+  display:flex;
+  justify-content:center;
+  margin-top:2.4rem;
+}
+
+.show-more-btn{
+  border:1px solid rgba(124,58,255,0.35);
+  background:linear-gradient(135deg,rgba(124,58,255,0.16),rgba(0,212,255,0.10));
+  color:var(--text);
+  padding:13px 30px;
+  border-radius:100px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  cursor:none;
+  transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s,background 0.25s;
+  box-shadow:0 14px 35px rgba(124,58,255,0.14);
+}
+
+.show-more-btn:hover{
+  transform:translateY(-3px);
+  border-color:rgba(0,212,255,0.5);
+  box-shadow:0 18px 45px rgba(0,212,255,0.16);
+  background:linear-gradient(135deg,rgba(124,58,255,0.25),rgba(0,212,255,0.18));
+}
+
 .proj-card{
   border-radius:16px;
   overflow:hidden;
@@ -1118,6 +1155,10 @@ footer{
     cursor:auto;
   }
 
+  .show-more-btn{
+    cursor:pointer;
+  }
+
   #cur,
   #curR{
     display:none;
@@ -1502,35 +1543,41 @@ footer{
         </div>
       </a>
 
-      <a href="javascript:void(0)" class="proj-card fade-up" data-gallery="project3" aria-label="Open ChatBot project gallery">
+      <a href="javascript:void(0)" class="proj-card fade-up project-hidden" data-gallery="project3" aria-label="Open SeekSpot project gallery">
         <div class="proj-thumb">
-          <img src="./images/project3-1.jpg" alt="ChatBot Platform Project">
+          <img src="./images/project3-1.jpg" alt="SeekSpot Tourist Platform Project">
         </div>
         <div class="proj-body">
-          <div class="proj-cat">SeekSpot website</div>
+          <div class="proj-cat">Tourism Website</div>
           <div class="proj-title">SeekSpot Tourist Platform</div>
-          <div class="proj-desc">Modern Tourist platform .</div>
+          <div class="proj-desc">Modern tourist platform with clean UI, destination pages, and smooth user experience.</div>
           <div class="proj-footer">
-            <div class="proj-tags"><span class="ptag">Html</span><span class="ptag">css</span><span class="ptag">javascript</span></div>
+            <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span></div>
             <div class="proj-arrow">↗</div>
           </div>
         </div>
       </a>
 
-      <a href="javascript:void(0)" class="proj-card fade-up" data-gallery="project4" aria-label="Open FitTrack project gallery">
+      <a href="javascript:void(0)" class="proj-card fade-up project-hidden" data-gallery="project4" aria-label="Open Haute Home project gallery">
         <div class="proj-thumb">
-          <img src="./images/project4-1.jpg" alt="FitTrack Health App Project">
+          <img src="./images/project4-1.jpg" alt="Haute Home Furniture Website Project">
         </div>
         <div class="proj-body">
-          <div class="proj-cat">HAUTE HOME Website</div>
-          <div class="proj-title">HAUTE HOME — Furniture Website</div>
-          <div class="proj-desc">Modern Haute home furniture website and doors and windows.</div>
+          <div class="proj-cat">Furniture Website</div>
+          <div class="proj-title">Haute Home — Furniture Website</div>
+          <div class="proj-desc">Modern furniture website showcasing premium doors, windows, interiors, and home furnishing products.</div>
           <div class="proj-footer">
-            <div class="proj-tags"><span class="ptag">Html</span><span class="ptag">Css</span><span class="ptag">Javascript</span></div>
+            <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span></div>
             <div class="proj-arrow">↗</div>
           </div>
         </div>
       </a>
+    </div>
+
+    <div class="projects-more-wrap fade-up">
+      <button type="button" class="show-more-btn" id="showMoreProjectsBtn">
+        <span>Show More Projects</span>
+      </button>
     </div>
   </div>
 </section>
@@ -1869,7 +1916,7 @@ const projectGalleries = {
     ]
   },
   project4: {
-    title: "FitTrack — Health App Gallery",
+    title: "Haute Home — Furniture Website Gallery",
     images: [
       "./images/project4-1.jpg",
       "./images/project4-2.jpg",
@@ -1951,6 +1998,23 @@ document.addEventListener("keydown", function(e){
     closeProjectGallery();
   }
 });
+
+/* Projects Show More / Show Less */
+const showMoreProjectsBtn = document.getElementById("showMoreProjectsBtn");
+const projectsGrid = document.querySelector(".proj-grid");
+
+if(showMoreProjectsBtn && projectsGrid){
+  showMoreProjectsBtn.addEventListener("click", function(){
+    const isOpen = projectsGrid.classList.toggle("show-all");
+    showMoreProjectsBtn.querySelector("span").textContent = isOpen ? "Show Less Projects" : "Show More Projects";
+
+    if(isOpen){
+      document.querySelectorAll(".project-hidden").forEach(card => card.classList.add("visible"));
+    } else {
+      document.getElementById("projects").scrollIntoView({behavior:"smooth"});
+    }
+  });
+}
 
 /* Contact form message using Web3Forms */
 const contactForm = document.getElementById("contactForm");
