@@ -1487,8 +1487,10 @@ footer{
         </div>
       </a>
 
-      <a href="#" class="proj-card fade-up">
-        <div class="proj-thumb pt2"><div class="pt-glow"></div><span class="pt-icon">📊</span></div>
+      <a href="javascript:void(0)" class="proj-card fade-up" data-gallery="project2" aria-label="Open DataViz project gallery">
+        <div class="proj-thumb">
+          <img src="./images/project2-1.jpg" alt="DataViz Dashboard Project">
+        </div>
         <div class="proj-body">
           <div class="proj-cat">SaaS · Analytics</div>
           <div class="proj-title">DataViz Dashboard</div>
@@ -1532,7 +1534,7 @@ footer{
 <div class="gallery-modal" id="galleryModal" aria-hidden="true">
   <div class="gallery-box" role="dialog" aria-modal="true" aria-label="Project Image Gallery">
     <button class="gallery-close" id="galleryClose" type="button" aria-label="Close Gallery">×</button>
-    <div class="gallery-title" id="galleryTitle">ShopEase — Project Gallery</div>
+    <div class="gallery-title" id="galleryTitle">Urban Furniture — Project Gallery</div>
 
     <div class="gallery-main">
       <img id="galleryMainImage" src="./images/project-1.jpg" alt="Project gallery preview">
@@ -1830,7 +1832,7 @@ document.querySelectorAll('.proj-card').forEach(card => {
 /* First project image gallery */
 const projectGalleries = {
   project1: {
-    title: "ShopEase — Project Gallery",
+    title: "Urban Furniture — Project Gallery",
     images: [
       "./images/project-1.jpg",
       "./images/project-2.jpg",
@@ -1838,6 +1840,17 @@ const projectGalleries = {
       "./images/project-4.jpg",
       "./images/project-5.jpg",
       "./images/project-6.jpg"
+    ]
+  },
+  project2: {
+    title: "DataViz Dashboard — Project Gallery",
+    images: [
+      "./images/project2-1.jpg",
+      "./images/project2-2.jpg",
+      "./images/project2-3.jpg",
+      "./images/project2-4.jpg",
+      "./images/project2-5.jpg",
+      "./images/project2-6.jpg"
     ]
   }
 };
